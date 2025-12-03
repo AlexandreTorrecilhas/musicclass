@@ -50,4 +50,14 @@ public class PessoaControle {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/removerPessoa/{idPessoa}")
+    public ResponseEntity<String> deletePessoa(@PathVariable int idPessoa){
+        try{
+            String mensagem = this.pessoaServicos.deletePessoa(idPessoa);
+            return ResponseEntity.status(HttpStatus.OK).body(mensagem);
+        }catch(ResourceNotFoundException ex){
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

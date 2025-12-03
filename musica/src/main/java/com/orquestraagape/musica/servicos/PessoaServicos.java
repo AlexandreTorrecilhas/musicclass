@@ -40,4 +40,14 @@ public class PessoaServicos {
         return Optional.empty();
     }
 
+    public String deletePessoa(int idPessoa){
+        this.pessoaRepositorio.findById(idPessoa).map(
+                pessoaAtual -> {
+                    this.pessoaRepositorio.deleteById(pessoaAtual.getIdPessoa());
+                    return ("Pessoa: " + pessoaAtual.getIdPessoa() + " " + pessoaAtual.getNome() + " foi removida");
+                }
+        ).orElseThrow(() -> new ResourceNotFoundException("Esse cadastro não existe"));
+        return "";
+    }
+
 }
