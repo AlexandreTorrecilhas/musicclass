@@ -1,0 +1,70 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="nome">Nome Completo:</label>
+    <input id="nome" type="text" formControlName="nome">
+    <div class="error-message" *ngIf="myForm.get('nome')?.invalid && myForm.get('nome')?.touched">
+      O nome é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input id="dataNascimento" type="date" formControlName="dataNascimento">
+    <div class="error-message" *ngIf="myForm.get('dataNascimento')?.invalid && myForm.get('dataNascimento')?.touched">
+      A data de nascimento é obrigatória.
+    </div>
+  </div>
+
+  <div>
+    <label>Você é estudante?</label>
+    <input id="estudante-sim" type="radio" value="Sim" formControlName="estudante">
+    <label for="estudante-sim">Sim</label>
+    <input id="estudante-nao" type="radio" value="Não" formControlName="estudante">
+    <label for="estudante-nao">Não</label>
+    <div class="error-message" *ngIf="myForm.get('estudante')?.invalid && myForm.get('estudante')?.touched">
+      Este campo é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label for="empregado">Situação Empregatícia:</label>
+    <select id="empregado" formControlName="empregado">
+      <option value="">-- Selecione --</option>
+      <option value="Sim">Empregado(a)</option>
+      <option value="Nao">Não Empregado(a)</option>
+    </select>
+    <div class="error-message" *ngIf="myForm.get('empregado')?.invalid && myForm.get('empregado')?.touched">
+      Este campo é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label>Já possui o instrumento desejado?</label>
+    <input id="teminstrumento-sim" type="radio" value="Sim" formControlName="teminstrumentodesejado">
+    <label for="teminstrumento-sim">Sim</label>
+    <input id="teminstrumento-nao" type="radio" value="Não" formControlName="teminstrumentodesejado">
+    <label for="teminstrumento-nao">Não</label>
+    <div class="error-message" *ngIf="myForm.get('teminstrumentodesejado')?.invalid && myForm.get('teminstrumentodesejado')?.touched">
+      Este campo é obrigatório.
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email">
+    <div class="error-message" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+        <span *ngIf="myForm.get('email')?.errors?.['required']">O email é obrigatório.</span>
+        <span *ngIf="myForm.get('email')?.errors?.['email']">O formato do email é inválido.</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="mensagem">Mensagem / Observações (Opcional):</label>
+    <textarea id="mensagem" formControlName="mensagem"></textarea>
+  </div>
+
+  <button type="submit" [disabled]="myForm.invalid">
+    Enviar Cadastro
+  </button>
+</form>
