@@ -23,7 +23,7 @@ export class AppPaginaMain{
     public botaoMenuLinks = [
         {
             nomeLink: 'Lista de Aluno',
-            caminhoPagina: '/teste'
+            caminhoPagina: '/cadastroAluno'
         },
         {
             nomeLink: 'Lista de Voluntarios',
