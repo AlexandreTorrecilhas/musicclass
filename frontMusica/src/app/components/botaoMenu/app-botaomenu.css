@@ -1,0 +1,10 @@
+.containerBotao{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+.bordaBotao{
+    border: 1px solid red;
+}

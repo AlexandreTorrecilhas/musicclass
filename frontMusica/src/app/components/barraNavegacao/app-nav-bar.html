@@ -1,5 +1,6 @@
-<nav>
-    <ul *ngFor = "let link of links">
-        <a [routerLink] = "link.path">{{link.name}}</a>
-    </ul>
-</nav>
+<ul *ngFor = "let link of links">
+    <!--*ngFor is the for each loop that angular possesses-->
+    <a [routerLink] = "link.caminhoPagina">{{link.nomeLink}}</a>
+    <!--All the information that gonna be bind/connected to something must always be between []. For this case, the path of the "a" tag gonna be bind to the object 
+        property-->
+</ul>
