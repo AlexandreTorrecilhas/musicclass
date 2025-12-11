@@ -92,4 +92,18 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "idPessoa=" + idPessoa +
+                ", nome='" + nome + '\'' +
+                ", dtNascimento=" + dtNascimento +
+                ", isEstudante=" + isEstudante +
+                ", isEmpregado=" + isEmpregado +
+                ", temInstrumento=" + temInstrumento +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
 }

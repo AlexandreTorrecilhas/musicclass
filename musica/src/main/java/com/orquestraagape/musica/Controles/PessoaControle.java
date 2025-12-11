@@ -8,11 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pessoa")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PessoaControle {
+
+
 
     private final PessoaServicos pessoaServicos;
 
@@ -59,5 +63,16 @@ public class PessoaControle {
         }catch(ResourceNotFoundException ex){
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Pessoa>> getAllPessoas(){
+        List<Pessoa> pessoas = this.pessoaServicos.getAllPessoas();
+
+        if (pessoas.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(pessoas);
     }
 }

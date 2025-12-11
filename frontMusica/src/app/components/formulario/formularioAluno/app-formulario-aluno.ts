@@ -26,11 +26,25 @@ export class AppFormularioAluno{
     onSubmit() {
     // Check if the form is valid before submitting
     if (this.myForm.valid) {
-        const formData = this.myForm.value;
-        const endpoint = 'https://sua-api.com/endpoint-de-envio'; // ⬅️ Replace with your actual endpoint
+const rawData = this.myForm.value;
+
+        // Mapeamento para o formato esperado pelo Java/API
+        const transformedData = {
+            // Mapeamento direto de strings/dates
+            nome: rawData.nome,
+            dtNascimento: rawData.dataNascimento,
+            email: rawData.email,
+            mensagem: rawData.mensagem, 
+
+            // 🌟 A CORREÇÃO: Converter a string 'Sim'/'Não' para o boolean true/false
+            isEstudante: rawData.estudante === 'Sim',
+            isEmpregado: rawData.empregado === 'Sim',
+            temInstrumento: rawData.teminstrumentodesejado === 'Sim'
+        };
+        const endpoint = 'http://localhost:8080/api/pessoa'; // ⬅️ Replace with your actual endpoint
 
         // 3. Send the Information to the Endpoint
-        this.http.post(endpoint, formData).subscribe({
+        this.http.post(endpoint, transformedData).subscribe({
         next: (response) => {
             console.log('Sucesso no envio:', response);
             alert('Formulário enviado com sucesso!');

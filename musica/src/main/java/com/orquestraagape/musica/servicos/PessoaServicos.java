@@ -5,6 +5,7 @@ import com.orquestraagape.musica.modelos.Pessoa;
 import com.orquestraagape.musica.repositorios.PessoaRepositorio;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,6 +49,10 @@ public class PessoaServicos {
                 }
         ).orElseThrow(() -> new ResourceNotFoundException("Esse cadastro não existe"));
         return "";
+    }
+
+    public List<Pessoa> getAllPessoas() {
+        return pessoaRepositorio.findAll();
     }
 
 }
