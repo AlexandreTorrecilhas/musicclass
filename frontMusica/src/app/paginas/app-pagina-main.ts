@@ -23,7 +23,9 @@ export class AppPaginaMain{
     public botaoMenuLinks = [
         {
             nomeLink: 'Cadastro de Pessoas',
+            //Here is the text that will be displayed
             caminhoPagina: '/cadastroAluno'
+            //Here I have to inform /declaredPathInTheRouteFile
         },
         {
             nomeLink: 'Consulta de pessoas',

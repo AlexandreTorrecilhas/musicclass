@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+//Here I am imorting all the required 'packages' to create my form
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { AppNavBar } from '../../barraNavegacao/app-nav-bar';
-import { AppFormularioAluno } from '../formularioAluno/app-formulario-aluno';
 
-//É crucial ter uma interface para os dados, seguindo a estrutura do seu backend
+//It is very important to have an interface that created a pattern an creates an structire to the information.
 interface Pessoa {
   idPessoa: number;
   nome: string;
-  dtNascimento: string; // Deve ser string no frontend para JSON
+  dtNascimento: string; //Dates must alays be string because they will be given to the database in JSON format.
   isEstudante: boolean;
   isEmpregado: boolean;
   temInstrumento: boolean;
@@ -19,7 +18,7 @@ interface Pessoa {
 @Component({
   selector: 'app-gerenciar-alunos',
   standalone: true,
-  // Adicionar todos os módulos necessários
+  // Here all the required modules are being imported
   imports: [CommonModule, HttpClientModule, ReactiveFormsModule],
   templateUrl: './app-formulario-pesquisar-pessoas.html',
   styleUrl: './app-formulario-pesquisar-pessoas.css'
