@@ -2,21 +2,15 @@ spring:
   application:
     name: musica
   datasource:
-    # URL: Changed the driver type, port (3306 is standard for MySQL), and database name.
-    url: jdbc:mysql://localhost:3306/musica
-    # Username: Changed to common MySQL default user.
-    username: maestro
-    # Password: Changed to a placeholder password.
-    password: mudar@123
-    # Driver: Changed from Oracle to the MySQL connector class.
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+    username: MAESTRO_LIDER
+    password: OrquestraAgape18
+    driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     show-sql: true
     hibernate:
-      # DDL-AUTO: Kept as 'true' (or 'update') for automatic schema creation/updates.
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
-        # DIALECT: Remains correct for modern MySQL.
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.OracleDialect
