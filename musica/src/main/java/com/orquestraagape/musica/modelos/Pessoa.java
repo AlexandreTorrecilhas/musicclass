@@ -37,6 +37,9 @@ public class Pessoa {
     @Column(name = "email", length = 500)
     private String email;
 
+    @OneToOne(mappedBy = "pessoa")
+    Responsavel responsavel;
+
     public int getIdPessoa() {
         return idPessoa;
     }
