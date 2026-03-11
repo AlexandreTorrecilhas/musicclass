@@ -1,0 +1,7 @@
+<div class="barra-navegacao">
+    <ul>
+        <li *ngFor = "let link of navLinks">
+            <a [routerLink]="link.caminhoPagina">{{link.nomePagina}}</a>
+        </li>
+    </ul>
+</div>

@@ -14,8 +14,8 @@ public class Pessoa {
 
     public Pessoa(){}
 
-    @Column(name = "id_pessoa")
     @Id
+    @Column(name = "id_pessoa")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPessoa;
 
