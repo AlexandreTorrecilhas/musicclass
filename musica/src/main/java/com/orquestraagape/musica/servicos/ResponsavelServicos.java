@@ -1,11 +1,14 @@
 package com.orquestraagape.musica.servicos;
 
+import com.orquestraagape.musica.exception.ResourceNotFoundException;
 import com.orquestraagape.musica.modelos.Pessoa;
 import com.orquestraagape.musica.modelos.Responsavel;
 import com.orquestraagape.musica.repositorios.ResponsavelRepositorio;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ResponsavelServicos {
@@ -24,5 +27,9 @@ public class ResponsavelServicos {
         responsavel.setPessoa(p); /*Bounding to the current object that will be stored in the database*/
 
         return this.responsavelRepositorio.save(responsavel);
+    }
+
+    public Responsavel getResponsabelById(int idResponsavel){
+        return this.responsavelRepositorio.findById(idResponsavel).orElseThrow(() -> new ResourceNotFoundException("Registro não encontrado"));
     }
 }
