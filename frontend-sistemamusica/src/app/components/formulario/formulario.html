@@ -1,5 +1,15 @@
-<form *ngFor = "let dadosFormulario of camposFormulario.secoes">
-    <fieldset>
-        <legend>{{dadosFormulario.titulo}}</legend>
-    </fieldset>
+<form [formGroup]="meuFormulario">
+    <div *ngFor = "let dadosFormulario of camposFormulario.secoes">
+        <fieldset>
+            <legend>{{dadosFormulario.titulo}}</legend>
+            <div *ngFor = "let campos of dadosFormulario.camposFormulario">
+                <label [attr.for] = "campos.key">{{campos.label}}</label>
+                <input
+                    [id] = "campos.key"
+                    [type] = "campos.type"
+                    [formControlName] = "campos.key"
+                />
+            </div>
+        </fieldset>
+    </div>
 </form>
