@@ -1,5 +1,6 @@
 package com.orquestraagape.musica.Controles;
 
+import com.orquestraagape.musica.DTO.PessoaDTO;
 import com.orquestraagape.musica.exception.ResourceNotFoundException;
 import com.orquestraagape.musica.modelos.Pessoa;
 import com.orquestraagape.musica.repositorios.PessoaRepositorio;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -25,7 +27,10 @@ public class PessoaControle {
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> postNovaPessoa(@RequestBody Pessoa novaPessoa){
+    public ResponseEntity<Pessoa> postNovaPessoa(@RequestBody PessoaDTO novaPessoa){
+
+        System.out.println("DTO Arrived! isEstudante: " + novaPessoa.isEstudante());
+        System.out.println("DTO Arrived! isEstudante: " + novaPessoa.isEmpregado());
 
         Pessoa pessoa = this.pessoaServicos.postNovaPessoa(novaPessoa);
 

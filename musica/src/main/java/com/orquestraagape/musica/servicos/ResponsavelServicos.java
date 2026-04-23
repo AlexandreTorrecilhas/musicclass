@@ -8,7 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class ResponsavelServicos {
@@ -31,5 +31,30 @@ public class ResponsavelServicos {
 
     public Responsavel getResponsabelById(int idResponsavel){
         return this.responsavelRepositorio.findById(idResponsavel).orElseThrow(() -> new ResourceNotFoundException("Registro não encontrado"));
+    }
+
+    public Responsavel updateResponsavel(Responsavel responsavelAtualizado){
+        return this.responsavelRepositorio.findById(responsavelAtualizado.getIdResponsavel())
+                .map((responsavelAtual) ->{
+                    responsavelAtual.setCpf(responsavelAtualizado.getCpf());
+                    responsavelAtual.setTelefone(responsavelAtual.getTelefone());
+                    responsavelAtual.setPessoa(responsavelAtualizado.getPessoa());
+                    return this.responsavelRepositorio.save(responsavelAtual);
+                })
+                .orElseThrow(() -> new ResourceNotFoundException("Responsável não encontrado"));
+        }
+
+    public String deleteResponsavel(int idResponsavel){
+        Responsavel responsavelDeletado = this.responsavelRepositorio.findById(idResponsavel)
+                .orElseThrow(() -> new ResourceNotFoundException("Esse registro já foi removido"));
+
+        this.responsavelRepositorio.deleteById(idResponsavel);
+
+        return "Responavel ID: " + responsavelDeletado.getPessoa().getIdPessoa() + " Nome: "
+                    + responsavelDeletado.getPessoa().getNome() + " foi deletado";
+    }
+
+    public List<Responsavel> findByPessoaNome(String nome){
+        return this.responsavelRepositorio.findByPessoaNomeContaining(nome);
     }
 }

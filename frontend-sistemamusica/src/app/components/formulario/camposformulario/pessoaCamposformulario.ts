@@ -1,21 +1,23 @@
 import { InterfaceFormulario } from "../../../interfaces/interfaceformulario/interfaceFormulario";
 
-export const CAMPOSDOFORMULARIO:InterfaceFormulario = {
-    linkApi: '/api/pessoa',
+export const PESSOACAMPOSDOFORMULARIO:InterfaceFormulario = {
+    linkApi: 'http://localhost:8080/api/pessoa',
     secoes: [
                 {
                     titulo: 'Dados Pessoais',
                     id: 'dadospessoais',
                     camposFormulario: [
                         { key: 'nome', label: 'Nome', type: 'text' },
-                        { key: 'datanascimento', label: 'Data Nascimento', type: 'date' }
+                        { key: 'dtNascimento', label: 'Data Nascimento', type: 'date' }
                     ]
                 },
                 {
                     titulo: 'Dados Administrativos',
                     id: 'dadosadministrativos',
                     camposFormulario: [
-                        { key: 'estudante', label: 'Estudante', type: 'radio' },
+                        { key: 'isEstudante', label: 'Estudante', type: 'checkbox', value: "true" },
+                        { key: 'isEmpregado', label: 'Voluntário', type: 'checkbox', value: "true" },
+                        { key: 'isResponsavel', label: 'Responsavel', type: 'checkbox', value: "true" },
                         { key: 'email', label: 'Email', type: 'email' }
                     ]
             }

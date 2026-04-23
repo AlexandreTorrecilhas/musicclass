@@ -1,10 +1,14 @@
 package com.orquestraagape.musica.servicos;
 
+import com.orquestraagape.musica.DTO.PessoaDTO;
 import com.orquestraagape.musica.exception.ResourceNotFoundException;
 import com.orquestraagape.musica.modelos.Pessoa;
 import com.orquestraagape.musica.repositorios.PessoaRepositorio;
 import org.springframework.stereotype.Service;
 
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +21,23 @@ public class PessoaServicos {
         this.pessoaRepositorio = pessoaRepositorio;
     }
 
-    public Pessoa postNovaPessoa(Pessoa pessoa){
+    public Pessoa postNovaPessoa(PessoaDTO novaPessoa){
+
+        Pessoa pessoaRegistro = new Pessoa();
+
+        pessoaRegistro.setNome(novaPessoa.getNome());
+
+        if (novaPessoa.getDtNascimento() != null) {
+            pessoaRegistro.setDtNascimento(Date.valueOf(LocalDate.parse(novaPessoa.getDtNascimento())));
+        }
+
+        pessoaRegistro.setEstudante(novaPessoa.isEstudante());
+        pessoaRegistro.setEmpregado(novaPessoa.isEmpregado());
+        pessoaRegistro.setEmail(novaPessoa.getEmail());
+        pessoaRegistro.setTemInstrumento(false);
+
         try{
-            return this.pessoaRepositorio.save(pessoa);
+            return this.pessoaRepositorio.save(pessoaRegistro);
         }catch(Exception e){
             System.out.println("Mensagem: " + e);
             throw(e) ;

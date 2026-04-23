@@ -1,8 +1,10 @@
 package com.orquestraagape.musica.modelos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "PESSOA",
@@ -22,14 +24,18 @@ public class Pessoa {
     @Column(name = "nome", length = 500, nullable = false)
     private String nome;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "dt_nascimento")
-    private Date dtNascimento;
+    private LocalDate dtNascimento;
 
     @Column(name = "estudante")
     private boolean isEstudante;
 
     @Column(name = "empregado")
     private boolean isEmpregado;
+
+    @Column(name = "responsavel")
+    private boolean isResponsavel;
 
     @Column(name = "teminstrumentodesejado")
     private boolean temInstrumento;
@@ -56,12 +62,12 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public Date getDtNascimento() {
+    public LocalDate getDtNascimento() {
         return dtNascimento;
     }
 
     public void setDtNascimento(Date dtNascimento) {
-        this.dtNascimento = dtNascimento;
+        this.dtNascimento = dtNascimento.toLocalDate();
     }
 
     public boolean isEstudante() {
@@ -94,6 +100,14 @@ public class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isResponsavel() {
+        return isResponsavel;
+    }
+
+    public void setResponsavel(boolean responsavel) {
+        isResponsavel = responsavel;
     }
 
     @Override

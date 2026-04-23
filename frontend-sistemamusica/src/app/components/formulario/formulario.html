@@ -1,15 +1,28 @@
-<form [formGroup]="meuFormulario">
+<form [formGroup]="meuFormulario" (ngSubmit)="onSubmit()">
     <div *ngFor = "let dadosFormulario of camposFormulario.secoes">
         <fieldset>
             <legend>{{dadosFormulario.titulo}}</legend>
             <div *ngFor = "let campos of dadosFormulario.camposFormulario">
                 <label [attr.for] = "campos.key">{{campos.label}}</label>
-                <input
-                    [id] = "campos.key"
-                    [type] = "campos.type"
-                    [formControlName] = "campos.key"
-                />
+<input
+    *ngIf="campos.type !== 'checkbox'"
+    [id]="campos.key"
+    [type]="campos.type"
+    [formControlName]="campos.key"
+    [name]="campos.name"
+/>
+
+<input
+    *ngIf="campos.type === 'checkbox'"
+    type="checkbox"
+    [id]="campos.key"
+    [formControlName]="campos.key"
+    [name]="campos.name"
+/>
             </div>
         </fieldset>
     </div>
+    <button type="submit" [disabled]="meuFormulario.invalid">
+            Save Record
+    </button>
 </form>
