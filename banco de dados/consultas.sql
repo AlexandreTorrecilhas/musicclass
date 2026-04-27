@@ -54,7 +54,7 @@ DROP TABLE maestro_lider.pessoa;
   
 SELECT *
     FROM maestro_lider.pessoa;
-
+--TESTE
 --========================
 --ESTUDANTE
 --========================

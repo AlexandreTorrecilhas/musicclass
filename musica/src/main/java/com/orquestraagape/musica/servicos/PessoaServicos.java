@@ -4,6 +4,7 @@ import com.orquestraagape.musica.DTO.PessoaDTO;
 import com.orquestraagape.musica.exception.ResourceNotFoundException;
 import com.orquestraagape.musica.modelos.Pessoa;
 import com.orquestraagape.musica.repositorios.PessoaRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Service
 public class PessoaServicos {
 
+    @Autowired
     private final PessoaRepositorio pessoaRepositorio;
 
     public PessoaServicos(PessoaRepositorio pessoaRepositorio){
